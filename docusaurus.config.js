@@ -10,13 +10,13 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-github-username.github.io',
+  url: 'https://aliraza4278.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
-  baseUrl: '/my-research-paper/',
+  baseUrl: '/Physical-AI-Humanoid-Robotics/',
 
   // GitHub pages deployment config
-  organizationName: 'your-github-username',
-  projectName: 'my-research-paper',
+  organizationName: 'ALIRAZA4278',
+  projectName: 'Physical-AI-Humanoid-Robotics',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -59,7 +59,7 @@ const config = {
       ({
         docs: {
           sidebarPath: './sidebars.js',
-          editUrl: 'https://github.com/your-github-username/my-research-paper/edit/main/',
+          editUrl: 'https://github.com/ALIRAZA4278/Physical-AI-Humanoid-Robotics/edit/main/',
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
         },
@@ -128,7 +128,7 @@ const config = {
             position: 'left',
           },
           {
-            href: 'https://github.com/your-github-username/my-research-paper',
+            href: 'https://github.com/ALIRAZA4278/Physical-AI-Humanoid-Robotics',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -204,7 +204,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/your-github-username/my-research-paper',
+                href: 'https://github.com/ALIRAZA4278/Physical-AI-Humanoid-Robotics',
               },
               {
                 label: 'ROS 2 Docs',
