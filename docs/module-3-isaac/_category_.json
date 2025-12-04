@@ -1,0 +1,13 @@
+{
+  "label": "Module 3: NVIDIA Isaac AI",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Deploy AI perception pipelines and navigation using NVIDIA Isaac Sim and Isaac ROS."
+  },
+  "customProps": {
+    "hardware_required": true,
+    "gpu_minimum": "RTX 3070",
+    "estimated_hours": 16
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "label": "Module 2: Digital Twin Simulation",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "description": "Build realistic humanoid robot simulations using Gazebo Harmonic and Unity integration."
+  },
+  "customProps": {
+    "hardware_required": false,
+    "gpu_recommended": true,
+    "estimated_hours": 14
+  }
+}
