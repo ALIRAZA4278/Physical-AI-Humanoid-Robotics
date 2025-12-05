@@ -1,0 +1,26 @@
+# Render Blueprint for RAG Chatbot API
+# Deploy at: https://render.com
+
+services:
+  - type: web
+    name: rag-chatbot-api
+    env: python
+    runtime: python-3.11
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://aliraza4278.github.io
+      - key: ENVIRONMENT
+        value: production
+    healthCheckPath: /api/health
