@@ -602,4 +602,60 @@ div[class*="announcementBar"] {
   table {
     font-size: 0.875rem;
   }
+
+  /* Navbar mobile styles */
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar__logo {
+    height: 1.75rem;
+  }
+
+  .navbar__toggle {
+    display: flex;
+  }
+
+  .navbar-sidebar {
+    background: var(--color-background);
+  }
+
+  .navbar-sidebar__brand {
+    padding: 1rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navbar-sidebar__items {
+    padding: 1rem;
+  }
+
+  .navbar-sidebar .menu__link {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .navbar__logo {
+    width: 100px;
+    height: 32px;
+  }
+
+  .markdown h1 {
+    font-size: 1.5rem;
+  }
+
+  .markdown h2 {
+    font-size: 1.25rem;
+  }
+
+  .markdown h3 {
+    font-size: 1.1rem;
+  }
+
+  table thead th,
+  table tbody td {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
 }
