@@ -12,7 +12,9 @@
       "Bash(python:*)",
       "Bash(uvicorn main:app:*)",
       "Bash(powershell -ExecutionPolicy Bypass -File:*)",
-      "Bash(del \"E:\\GIAIC Q4\\hackathon\\my-research-paper\\api\\=0.8.0\")"
+      "Bash(del \"E:\\GIAIC Q4\\hackathon\\my-research-paper\\api\\=0.8.0\")",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

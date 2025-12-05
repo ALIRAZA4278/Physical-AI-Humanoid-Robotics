@@ -16,10 +16,10 @@ const getApiUrl = (): string => {
   if (typeof window === 'undefined') {
     return 'http://localhost:8000';
   }
-  // Use localhost for development, otherwise use deployed API
+  // Use localhost for development, otherwise use Hugging Face Spaces API
   return window.location.hostname === 'localhost'
     ? 'http://localhost:8000'
-    : 'https://your-api-deployment-url.com'; // Replace with actual deployment URL
+    : 'https://aliraza4278-rag-chatbot-api.hf.space';
 };
 
 export default function Root({ children }: RootProps) {
