@@ -1,16 +1,22 @@
+# Hugging Face Spaces Docker configuration
 FROM python:3.11-slim
+
+# Create non-root user (required by HF)
+RUN useradd -m -u 1000 user
+USER user
+ENV PATH="/home/user/.local/bin:$PATH"
 
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+COPY --chown=user ./requirements.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY --chown=user . /app
 
-# Expose port
-EXPOSE 8080
+# Hugging Face requires port 7860
+EXPOSE 7860
 
 # Run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "7860"]
