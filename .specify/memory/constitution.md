@@ -1,211 +1,288 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version change: 0.0.0 → 1.0.0
-Bump rationale: Initial constitution ratification (MAJOR) - establishing all principles and governance
+Version change: 1.0.0 → 2.0.0
+Bump rationale: MAJOR - Complete project scope redefinition from "AI-Driven Book Creation"
+                to "Integrated RAG Chatbot for Physical AI & Humanoid Robotics Book".
+                All principles, technical standards, and success criteria fundamentally changed.
 
-Modified principles: N/A (new document)
+Modified principles:
+- Accuracy → Accuracy (redefined: from technical docs validation to primary source verification
+  with academic rigor)
+- Clarity → Clarity (redefined: from intermediate developers to CS/robotics academic audience)
+- Consistency → Reproducibility (NEW focus: pipeline reproducibility for RAG system)
+- Modularity → removed (not applicable to RAG chatbot)
+- Maintainability → removed (subsumed by technical standards)
+- Practicality → removed (subsumed by grounding requirements)
+- Version Awareness → removed (subsumed by technical standards)
+- NEW: Rigor (academic/industry source standards)
+- NEW: Grounding (hallucination prevention)
 
 Added sections:
-- Core Principles (7 principles: Accuracy, Clarity, Consistency, Modularity, Maintainability, Practicality, Version Awareness)
-- Key Standards (Writing Style, Technical Requirements, Source Standards, Citation Format, Code Requirements)
-- Constraints
-- Success Criteria
-- Governance
+- Technical Standards for RAG System (Embedding, Metadata, Models, Selection Mode, Frontend)
+- Infrastructure Requirements (Qdrant Cloud, Neon Postgres, OpenAI Agents SDK, FastAPI)
+- RAG-Specific Success Criteria (retrieval correctness, hallucination suppression, latency)
 
-Removed sections: None
+Removed sections:
+- Docusaurus-specific guidance
+- GitHub Pages deployment focus
+- Spec-Kit Plus workflow compliance
+- Chapter structure requirements
 
 Templates consistency check:
-- .specify/templates/plan-template.md ✅ Compatible (Constitution Check section references constitution file)
-- .specify/templates/spec-template.md ✅ Compatible (Requirements and Success Criteria align with constitution)
-- .specify/templates/tasks-template.md ✅ Compatible (Phase structure supports book chapter workflows)
+- .specify/templates/plan-template.md ✅ Compatible (Constitution Check section references
+  constitution file generically)
+- .specify/templates/spec-template.md ✅ Compatible (Requirements and Success Criteria
+  structure is reusable)
+- .specify/templates/tasks-template.md ✅ Compatible (Phase structure supports RAG system
+  development workflows)
 
 Follow-up TODOs: None
 -->
 
-# AI-Driven Book Creation Constitution
+# Integrated RAG Chatbot Constitution
+
+## Project Overview
+
+**Project**: Integrated RAG Chatbot for the Physical AI & Humanoid Robotics Book
+**Objective**: Build and embed an interactive Retrieval-Augmented Generation (RAG) chatbot
+directly into the published Docusaurus book. The chatbot MUST answer questions about the
+book's content and optionally answer questions based only on user-selected text portions.
+
+**Technology Stack**:
+- **Backend**: FastAPI
+- **Vector Store**: Qdrant Cloud Free Tier
+- **Relational Database**: Neon Serverless Postgres
+- **AI/LLM**: OpenAI Agents / ChatKit SDK with GPT models
+- **Frontend**: React-based widget embedded in Docusaurus
 
 ## Core Principles
 
-### I. Accuracy
+### I. Accuracy Through Primary Source Verification
 
-All technical explanations MUST be validated using official documentation (Docusaurus, GitHub Pages, Spec-Kit Plus, Claude Code, Node.js, etc.).
+All technical statements MUST be validated against official documentation and authoritative sources.
 
-- Technical claims MUST be verifiable against official sources
-- Code samples MUST be tested before inclusion
-- Commands MUST be validated on stated tool versions
-- No AI hallucinations permitted—all claims MUST be source-verified
+- Technical claims about ROS 2, NVIDIA Isaac, OpenAI Whisper, VSLAM, and other robotics/AI
+  technologies MUST be verified against official documentation
+- Code samples MUST be tested and validated before inclusion
+- API contracts MUST match actual implementation behavior
+- No AI hallucinations permitted—all answers MUST be grounded in retrieved context
 - When documentation conflicts exist, prefer the most recent official release documentation
 
-**Rationale**: Books teaching technical workflows become worthless if instructions don't work. Accuracy is non-negotiable for developer trust.
+**Rationale**: A RAG system teaching robotics concepts becomes harmful if it provides
+inaccurate technical information. Primary source verification is non-negotiable for
+academic credibility.
 
-### II. Clarity
+### II. Clarity for Academic Audience
 
-Writing MUST be understandable for intermediate developers (1–3 years experience).
+Writing and responses MUST be understandable for students with computer science and
+robotics backgrounds.
 
+- Target reader: Students with CS + robotics foundational knowledge
 - Definitions MUST precede advanced concepts
-- Step-by-step explanations MUST follow logical progression
-- Jargon MUST be explained on first use
-- Complex concepts MUST include examples
-- Each chapter MUST have clear learning objectives stated upfront
+- Technical explanations MUST follow logical progression
+- Domain jargon MUST be explained on first use or be retrievable from the book context
+- Complex concepts MUST include examples when retrieved context supports it
+- Writing SHOULD target Flesch-Kincaid grade 10–12 readability
 
-**Rationale**: The target audience has foundational knowledge but may lack familiarity with specific tools. Meeting them where they are maximizes comprehension.
+**Rationale**: The target audience has foundational knowledge but may lack familiarity
+with specific robotics technologies. Meeting them at their level maximizes comprehension.
 
-### III. Consistency
+### III. Reproducibility
 
-All chapters MUST follow a unified structure, tone, and formatting style.
+Every pipeline component MUST be reconstructable via documented instructions.
 
-- Technical-tutorial tone throughout
-- Consistent heading hierarchy across chapters
-- Uniform code block formatting with language tags
-- Standardized callout styles (warnings, tips, notes)
-- Cross-references MUST use consistent link format
+- Embedding generation pipeline MUST be fully documented
+- Ingestion workflows MUST be reproducible from source book content
+- Vector search configuration MUST be explicitly specified (dimensions, distance metric,
+  payload schema)
+- API endpoints MUST be documented with request/response contracts
+- Frontend chat widget integration MUST have step-by-step setup instructions
+- Environment setup MUST be documented for both local development and production
 
-**Rationale**: Inconsistent documentation creates cognitive load and undermines professional credibility.
+**Rationale**: Academic and production systems require reproducibility for peer review,
+debugging, and maintenance.
 
-### IV. Modularity
+### IV. Rigor
 
-Content MUST be structured in small, reusable sections suitable for Docusaurus.
+All content and system behavior MUST meet academic and industry-grade standards.
 
-- Each section SHOULD be independently navigable
-- Topics MUST avoid circular dependencies where possible
-- Content MUST support sidebar navigation patterns
-- Sections SHOULD be suitable for re-ordering without breaking comprehension
-- Each chapter MUST work as a standalone reference after initial setup
+- Official documentation MUST be the primary source for technical claims
+- Peer-reviewed robotics and AI papers SHOULD be preferred for theoretical sections
+- At least 50% of theoretical content sources MUST be peer-reviewed material
+- Industry-grade technical sources MAY supplement academic sources
+- All factual claims MUST be traceable and citable
 
-**Rationale**: Docusaurus is designed for modular documentation. Forcing long-form narrative into it creates poor user experience.
+**Rationale**: A system embedded in an academic book MUST uphold academic integrity
+and source quality standards.
 
-### V. Maintainability
+### V. Grounding
 
-All content MUST be easy to update as Docusaurus or tools evolve.
+All chatbot answers MUST be grounded in retrieved context with no hallucination.
 
-- Version numbers MUST be explicitly stated for all tools
-- Installation commands MUST specify version constraints
-- Deprecated features MUST NOT be taught as primary approaches
-- Content SHOULD anticipate common version migration pain points
-- Update procedures SHOULD be documented alongside initial setup
+- Answers MUST be derived exclusively from retrieved book content
+- When in "selection-only" mode, retrieval MUST be disabled and answers MUST use only
+  the user-selected text
+- Citations MUST be provided in responses to indicate source sections
+- System MUST decline to answer when retrieved context is insufficient
+- Confidence indicators SHOULD be provided when appropriate
 
-**Rationale**: Technical documentation has a shelf life. Designing for updates extends the book's useful lifespan.
-
-### VI. Practicality
-
-Prioritize actionable, hands-on guidance with working code examples.
-
-- Every concept MUST include a working example
-- Examples MUST be copy-paste ready (no pseudo-code without explanation)
-- Build & deploy instructions MUST be complete end-to-end
-- GitHub repo file structure MUST be shown whenever relevant
-- Reader MUST be able to follow along and produce working results
-
-**Rationale**: Developers learn by doing. Theoretical explanations without practical application fail to teach effectively.
-
-### VII. Version Awareness
-
-Always mention the version of every tool or framework used.
-
-- Node.js version MUST be stated
-- Docusaurus version MUST be stated
-- npm/yarn version SHOULD be stated
-- All dependency versions MUST be documented
-- Version compatibility notes MUST be included for known conflicts
-
-**Rationale**: Version mismatches are the #1 cause of "it doesn't work" issues. Explicit versioning enables debugging.
+**Rationale**: RAG systems fail when they hallucinate beyond their knowledge base.
+Strict grounding prevents misinformation.
 
 ## Key Standards
 
 ### Writing Style
-- Technical-tutorial tone maintained throughout
-- Step-by-step explanations with numbered procedures
-- Definitions MUST precede advanced concepts
+
+- Technical-academic tone maintained throughout documentation
+- Step-by-step explanations with numbered procedures for setup guides
 - All code samples MUST be tested before inclusion
 - Active voice preferred; passive voice only when emphasizing the action target
+- APA citation style MUST be used across documentation and the book
+- 0% tolerance for plagiarism; rewrite or properly cite all reproduced content
 
 ### Technical Requirements
-- Commands MUST be tested on the latest stable Node.js and relevant Docusaurus version
-- Include required GitHub repo file structure whenever relevant
-- Provide complete build & deploy instructions using GitHub Pages
-- For Spec-Kit Plus workflows, follow official schema and command patterns
-- All CLI commands MUST show expected output where helpful
+
+#### Embedding & Search (Qdrant Cloud Free Tier)
+
+- Vector dimensions MUST be documented (e.g., 1536 for OpenAI text-embedding-ada-002)
+- Distance metric MUST be specified (cosine, dot product, or Euclidean)
+- Payload schema MUST be documented for filtering and metadata storage
+- Collection configuration MUST be reproducible
+
+#### Metadata & Structured Knowledge (Neon Serverless Postgres)
+
+- Book sections, citations, timestamps, and retrieval logs MUST be stored
+- Schema MUST be normalized and documented
+- Migration scripts MUST be provided for reproducibility
+- Retrieval logs SHOULD support debugging and evaluation
+
+#### AI Models (OpenAI Agents / ChatKit SDK)
+
+- GPT models MUST be accessed through official OpenAI Agents or ChatKit SDK
+- Model versions MUST be explicitly specified
+- Grounding rules MUST be enforced in system prompts
+- Token limits and context windows MUST be documented
+
+#### User-Selected Text Mode
+
+- Chatbot MUST accept a block of selected text as context
+- When in selection-only mode, vector retrieval MUST be disabled
+- Answers MUST be derived only from the selected text
+- Mode switching MUST be clearly indicated in the UI
+
+#### Frontend Integration (Docusaurus/React)
+
+- Chat widget MUST be embedded inside the Docusaurus book
+- Streaming responses MUST be supported
+- Citations MUST be displayed in the UI
+- Text selection interaction MUST be intuitive
+- Widget MUST be responsive and accessible
 
 ### Source Standards
-- Prefer official documentation (Docusaurus, GitHub Pages, Spec-Kit Plus, Git)
-- When external sources are used, prioritize reputable technical blogs or docs
-- All claims about tools MUST be linked to official sources
-- Community resources (Stack Overflow, GitHub issues) MAY be referenced for troubleshooting
+
+- Official documentation preferred (OpenAI, Qdrant, Neon, FastAPI, ROS 2, NVIDIA Isaac)
+- Peer-reviewed papers preferred for theoretical robotics/AI content
+- Minimum 15 sources required for documentation
+- All claims MUST be linked to authoritative sources
+- Community resources MAY be referenced for troubleshooting
 
 ### Citation Format
-- Use Markdown links only (not APA or academic formats)
-- Example: `[Docusaurus Deployment Docs](https://docusaurus.io/docs/deployment)`
-- Links SHOULD use descriptive anchor text, not "click here"
-- Official docs MUST be linked; third-party sources SHOULD be linked
+
+- APA citation style MUST be used in documentation and the book
+- Example: Author, A. A. (Year). Title of work. Publisher. https://doi.org/xxxxx
+- All external sources MUST have complete citation information
+- Inline citations MUST reference the full citation in a references section
 
 ### Code Requirements
+
 - All code MUST be functional and validated
-- Use fenced code blocks with language tags (e.g., ```bash, ```js, ```json)
-- Avoid pseudo-code unless clearly explained as such
+- Use fenced code blocks with language tags (e.g., ```python, ```typescript, ```sql)
 - Include file paths as comments when showing file contents
-- Show both command and expected output where clarity benefits
+- API endpoints MUST include request/response examples
+- Error handling MUST be demonstrated for critical paths
 
 ## Constraints
 
-- **Book Length**: 30–80 pages (flexible by chapter count)
-- **Output Format**: Markdown files (`.md`/`.mdx`) in Docusaurus-friendly structure
-- **Deployment**: MUST build and deploy to GitHub Pages without errors
-- **Tooling**: MUST support Spec-Kit Plus workflows and Claude Code
-- **No AI hallucinations**: All technical claims MUST be source-verified
-- **No plagiarism**: Content MUST be original or properly referenced
-- **No broken links**: All documentation links MUST be validated before publication
+- **Documentation Length**: 5,000–7,000 words
+- **Minimum Sources**: 15 authoritative sources
+- **Output Format**: PDF with embedded APA citations (deliverable), plus Markdown for docs
+- **Performance**: Latency < 1.5s for retrieval + response under typical load
+- **Deployment Environments**:
+  - Local development: FastAPI + Postgres + Qdrant Cloud
+  - Production: GitHub Pages (frontend) + external API (backend)
+- **No AI hallucinations**: All responses MUST be grounded in retrieved context
+- **No plagiarism**: Content MUST be original or properly cited
+- **Zero tolerance**: Plagiarism check MUST pass automated verification
 
 ## Success Criteria
 
 ### Technical Accuracy
-- Docusaurus builds successfully (`npm run build`)
-- GitHub Pages deployment completes without CI/CD errors
-- All code examples work exactly as shown
+
+- Every documentation claim verified against authoritative sources
+- Zero plagiarism upon automated check
+- All code examples execute correctly
+- API contracts match implementation behavior
 - All external links resolve to valid pages
 
+### RAG System Quality
+
+- **Retrieval Correctness**: Relevant passages retrieved for user queries
+- **Hallucination Suppression**: No answers generated outside retrieved context
+- **Selection Mode**: Correctly answers from user-selected text only when active
+- **Citation Accuracy**: Sources correctly attributed in responses
+- **Latency**: < 1.5s for retrieval + response under typical load
+
+### Frontend Integration
+
+- Chat widget renders correctly in Docusaurus
+- Streaming responses display progressively
+- Citations are clickable and navigate to source sections
+- Text selection mode works intuitively
+- Widget is responsive across device sizes
+
 ### Documentation Quality
-- Clear navigation and chapter structure
-- Internal consistency across the book
-- No ambiguous, misleading, or unverified statements
+
+- Clear setup and deployment instructions
+- Reproducible pipelines with documented steps
 - Logical flow from prerequisites to advanced topics
+- Internal consistency across all documentation
 
-### Spec-Kit Plus Compliance
-- Book generation workflows run successfully
-- Constitutional rules are followed throughout
-- No contradictions between chapters
-- PHRs created for all significant development sessions
+### Reader/User Outcome
 
-### Reader Outcome
-A reader with basic web development skills MUST be able to:
-1. Create a Docusaurus project
-2. Write chapters using Spec-Kit Plus
-3. Use Claude Code to generate structured content
-4. Deploy the book to GitHub Pages
-5. Maintain and update the documentation easily
+A user interacting with the chatbot MUST be able to:
+1. Ask questions about book content and receive grounded answers
+2. Select text and ask questions about that specific selection
+3. See citations linking answers to source sections
+4. Experience response latency under 1.5 seconds
+5. Trust that answers are not hallucinated
 
 ## Governance
 
 ### Amendment Procedure
+
 1. Proposed changes MUST be documented with rationale
 2. Changes to Core Principles require explicit justification
 3. All amendments MUST update the version number
 4. Amendment history MUST be preserved in sync impact reports
 
 ### Versioning Policy
+
 - **MAJOR**: Backward incompatible principle removals or redefinitions
 - **MINOR**: New principle/section added or materially expanded guidance
 - **PATCH**: Clarifications, wording, typo fixes, non-semantic refinements
 
 ### Compliance Review
+
 - All PRs/reviews MUST verify compliance with this constitution
-- Complexity MUST be justified against the Modularity principle
 - Technical claims MUST cite sources per Source Standards
 - Code samples MUST be tested per Technical Requirements
+- RAG responses MUST be evaluated for grounding compliance
 
 ### Conflict Resolution
+
 - This constitution supersedes all other practices
-- When principles conflict, prioritize in order: Accuracy > Practicality > Clarity > others
+- When principles conflict, prioritize in order: Accuracy > Grounding > Rigor > Clarity > others
 - Ambiguous cases SHOULD be escalated to the project maintainer
 
-**Version**: 1.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-04
+**Version**: 2.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-07

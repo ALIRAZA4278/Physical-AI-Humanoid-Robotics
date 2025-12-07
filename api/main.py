@@ -4,10 +4,12 @@ FastAPI application for RAG chatbot backend.
 Physical AI & Humanoid Robotics - Documentation Chatbot API
 """
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from contextlib import asynccontextmanager
 import logging
+import traceback
 
 from config import get_settings
 from models.database import init_db
@@ -75,6 +77,51 @@ app.add_middleware(
 # Include routers
 app.include_router(chat_router)
 app.include_router(ingest_router)
+
+
+# Error handling middleware
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    """
+    Global exception handler with graceful fallback messages.
+
+    Catches all unhandled exceptions and returns user-friendly error responses
+    while logging the full error details for debugging.
+    """
+    # Log the full error with traceback
+    logger.error(f"Unhandled exception on {request.method} {request.url.path}")
+    logger.error(f"Error type: {type(exc).__name__}")
+    logger.error(f"Error message: {str(exc)}")
+    logger.error(f"Traceback: {traceback.format_exc()}")
+
+    # Determine error category and provide user-friendly message
+    error_type = type(exc).__name__
+
+    # Map specific errors to user-friendly messages
+    error_messages = {
+        "ConnectionError": "Unable to connect to external services. Please try again later.",
+        "TimeoutError": "The request timed out. Please try again with a shorter question.",
+        "RateLimitError": "Too many requests. Please wait a moment before trying again.",
+        "AuthenticationError": "API authentication failed. Please contact support.",
+        "ValidationError": "Invalid request format. Please check your input.",
+    }
+
+    # Get user-friendly message or use default
+    user_message = error_messages.get(
+        error_type,
+        "An unexpected error occurred. Our team has been notified."
+    )
+
+    # Return structured error response
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": True,
+            "message": user_message,
+            "error_type": error_type if settings.environment == "development" else "ServerError",
+            "detail": str(exc) if settings.environment == "development" else None,
+        },
+    )
 
 
 @app.get("/api/health", response_model=HealthResponse, tags=["health"])
