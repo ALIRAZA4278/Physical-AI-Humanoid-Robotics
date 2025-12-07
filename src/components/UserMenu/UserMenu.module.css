@@ -12,7 +12,7 @@
 /* Adjust for navbar */
 @media (min-width: 997px) {
   .container {
-    top: 0.75rem;
+    top: 4rem;
     right: 1.5rem;
   }
 }
