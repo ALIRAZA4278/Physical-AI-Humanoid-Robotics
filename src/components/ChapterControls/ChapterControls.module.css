@@ -5,9 +5,14 @@
 .container {
   margin: 1.5rem 0;
   padding: 1rem;
-  background: linear-gradient(135deg, var(--ifm-color-primary-lightest), rgba(var(--ifm-color-primary-rgb), 0.05));
+  background: #f3f4f6;
   border-radius: 12px;
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 1px solid #d1d5db;
+}
+
+[data-theme='dark'] .container {
+  background: #2d3748;
+  border-color: #4a5568;
 }
 
 .controlsHeader {
@@ -43,8 +48,13 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  background: var(--ifm-background-color);
-  color: var(--ifm-font-color-base);
+  background: #ffffff;
+  color: #374151;
+}
+
+[data-theme='dark'] .controlButton {
+  background: #1a202c;
+  color: #e5e7eb;
 }
 
 .controlButton:hover:not(:disabled) {
@@ -130,10 +140,15 @@
 .contentBox {
   margin-top: 1rem;
   padding: 1.25rem;
-  background: var(--ifm-background-color);
+  background: #ffffff;
   border-radius: 10px;
-  border: 1px solid var(--ifm-color-emphasis-200);
+  border: 1px solid #d1d5db;
   animation: fadeIn 0.3s ease-out;
+}
+
+[data-theme='dark'] .contentBox {
+  background: #1a202c;
+  border-color: #4a5568;
 }
 
 @keyframes fadeIn {

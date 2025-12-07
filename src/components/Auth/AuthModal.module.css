@@ -8,17 +8,16 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1100;
   padding: 1rem;
-  backdrop-filter: blur(8px);
 }
 
 .modal {
-  background: var(--ifm-background-color);
+  background: #ffffff;
   border-radius: 16px;
   padding: 2rem;
   width: 100%;
@@ -26,8 +25,12 @@
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   animation: slideUp 0.3s ease-out;
+}
+
+[data-theme='dark'] .modal {
+  background: #1c1e21;
 }
 
 @keyframes slideUp {
