@@ -81,6 +81,9 @@ def get_session_local():
 
 def init_db():
     """Initialize database tables."""
+    # Import User model to ensure it's registered with Base
+    from models.user import User  # noqa: F401
+
     engine = get_engine()
     Base.metadata.create_all(bind=engine)
 

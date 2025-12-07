@@ -15,7 +15,12 @@
       "Bash(del \"E:\\GIAIC Q4\\hackathon\\my-research-paper\\api\\=0.8.0\")",
       "Bash(git commit:*)",
       "Bash(git push:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "WebFetch(domain:aliraza4278-rag-chatbot-api.hf.space)",
+      "WebSearch",
+      "WebFetch(domain:www.better-auth.com)",
+      "WebFetch(domain:better-auth-ui.com)",
+      "Bash(git rm:*)"
     ],
     "deny": [],
     "ask": []

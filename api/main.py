@@ -14,7 +14,7 @@ import traceback
 from config import get_settings
 from models.database import init_db
 from models.schemas import HealthResponse
-from routers import chat_router, ingest_router
+from routers import chat_router, ingest_router, auth_router, translate_router, personalize_router
 
 # Configure logging
 logging.basicConfig(
@@ -77,6 +77,9 @@ app.add_middleware(
 # Include routers
 app.include_router(chat_router)
 app.include_router(ingest_router)
+app.include_router(auth_router)
+app.include_router(translate_router)
+app.include_router(personalize_router)
 
 
 # Error handling middleware

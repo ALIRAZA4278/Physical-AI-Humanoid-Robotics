@@ -5,7 +5,9 @@
 
 import React, { ReactNode } from 'react';
 import { ChatProvider } from '../context/ChatContext';
+import { AuthProvider } from '../context/AuthContext';
 import ChatBot from '../components/ChatBot';
+import UserMenu from '../components/UserMenu';
 
 interface RootProps {
   children: ReactNode;
@@ -26,9 +28,12 @@ export default function Root({ children }: RootProps) {
   const apiUrl = getApiUrl();
 
   return (
-    <ChatProvider apiUrl={apiUrl}>
-      {children}
-      <ChatBot />
-    </ChatProvider>
+    <AuthProvider apiUrl={apiUrl}>
+      <ChatProvider apiUrl={apiUrl}>
+        {children}
+        <ChatBot />
+        <UserMenu />
+      </ChatProvider>
+    </AuthProvider>
   );
 }
