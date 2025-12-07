@@ -118,7 +118,11 @@ export function AuthProvider({ children, apiUrl }: AuthProviderProps) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            ...signupData,
+            email: signupData.email,
+            password: signupData.password,
+            name: signupData.name,
+            software_background: signupData.softwareBackground,
+            hardware_background: signupData.hardwareBackground,
             preferred_language: 'en',
             experience_level: 'beginner',
           }),
@@ -131,7 +135,18 @@ export function AuthProvider({ children, apiUrl }: AuthProviderProps) {
           setUser(data.user);
           return { success: true };
         } else {
-          return { success: false, error: data.detail || 'Signup failed' };
+          // Handle FastAPI validation errors (422)
+          let errorMessage = 'Signup failed';
+          if (response.status === 422 && Array.isArray(data.detail)) {
+            // Extract first validation error message
+            const firstError = data.detail[0];
+            if (firstError && firstError.msg) {
+              errorMessage = firstError.msg;
+            }
+          } else if (data.detail) {
+            errorMessage = typeof data.detail === 'string' ? data.detail : 'Signup failed';
+          }
+          return { success: false, error: errorMessage };
         }
       } catch (error) {
         return { success: false, error: 'Network error. Please try again.' };
