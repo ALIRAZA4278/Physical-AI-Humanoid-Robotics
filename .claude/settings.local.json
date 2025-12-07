@@ -20,7 +20,8 @@
       "WebSearch",
       "WebFetch(domain:www.better-auth.com)",
       "WebFetch(domain:better-auth-ui.com)",
-      "Bash(git rm:*)"
+      "Bash(git rm:*)",
+      "Bash(robocopy:*)"
     ],
     "deny": [],
     "ask": []
