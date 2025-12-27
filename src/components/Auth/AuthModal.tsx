@@ -3,7 +3,7 @@
  * Collects user background information during signup for personalization.
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import styles from './AuthModal.module.css';
 
@@ -15,6 +15,11 @@ interface AuthModalProps {
 
 export function AuthModal({ isOpen, onClose, initialMode = 'login' }: AuthModalProps) {
   const [mode, setMode] = useState<'login' | 'signup'>(initialMode);
+
+  // Sync mode with initialMode when it changes (fixes same modal for both buttons)
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
