@@ -21,7 +21,8 @@
       "WebFetch(domain:www.better-auth.com)",
       "WebFetch(domain:better-auth-ui.com)",
       "Bash(git rm:*)",
-      "Bash(robocopy:*)"
+      "Bash(robocopy:*)",
+      "Bash(npm run swizzle:*)"
     ],
     "deny": [],
     "ask": []
