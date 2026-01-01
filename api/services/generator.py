@@ -2,7 +2,10 @@
 Generator service using Google Gemini models.
 """
 
-import google.generativeai as genai
+import warnings
+with warnings.catch_warnings():
+    warnings.filterwarnings("ignore", category=FutureWarning)
+    import google.generativeai as genai
 from typing import List, Dict, Any, Optional
 import logging
 
