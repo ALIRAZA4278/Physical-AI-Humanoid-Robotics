@@ -2,6 +2,10 @@
 Embedding service using Google Gemini text-embedding-004.
 """
 
+import warnings
+# Suppress deprecation warning for google.generativeai (will migrate to google.genai in future)
+warnings.filterwarnings("ignore", message=".*google.generativeai.*", category=FutureWarning)
+
 import google.generativeai as genai
 from typing import List
 import logging

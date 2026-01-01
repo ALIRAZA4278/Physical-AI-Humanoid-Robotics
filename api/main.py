@@ -185,6 +185,18 @@ async def root():
     }
 
 
+@app.get("/health", tags=["health"])
+async def simple_health():
+    """
+    Simple health check endpoint for container orchestration (Hugging Face Spaces).
+
+    Returns immediately without checking external services.
+    This endpoint is used by the platform's readiness/liveness probes.
+    For detailed health status including external services, use /api/health.
+    """
+    return {"status": "ok"}
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(
